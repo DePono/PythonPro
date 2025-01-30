@@ -18,7 +18,8 @@
 # Ожидаемый результат: 8
 # ВАЖНО: Ваша функция должна корректно обрабатывать пропущенные элементы и находить индекс заданного элемента.
 # Функция должна работать эффективно для больших массивов с пропущенными элементами, поддерживая сложность бинарного поиска, то есть O(log n) в среднем
-
+import time
+import random
 original_list = [1, 2, None, None, 5, 6, 7, None, 10, 11]
 
 def search_in_sparse_array(list: list, x: int) -> int:
@@ -62,7 +63,54 @@ def search_in_sparse_array(list: list, x: int) -> int:
           last_index = left - 1
     return -1 # Если ничего не нашли
 
+def generate_sparse_list(length: int, none_ratio: float = 0.3) -> list:
+    """
+    Генерирует отсортированный список с None значениями.
+
+    Args:
+        length: Длина списка.
+        none_ratio: Вероятность добавления None на позицию.
+
+    Returns:
+        Сгенерированный список.
+    """
+    sorted_list = []
+    current_value = 1
+    for _ in range(length):
+        if random.random() < (1 - none_ratio):
+            sorted_list.append(current_value)
+            current_value += 1
+        else:
+            sorted_list.append(None)
+    return sorted_list
+
+def run_tests(list_lengths: list, search_element: int):
+    """
+    Запускает тесты с разными списками и замеряет время выполнения.
+
+    Args:
+        list_lengths: Список длин генерируемых списков.
+        search_element: Элемент, который ищем в списке
+    """
+    for length in list_lengths:
+      sparse_list = generate_sparse_list(length)
+      start_time = time.time()
+      index = search_in_sparse_array(sparse_list, search_element)
+      end_time = time.time()
+      print(f"Length: {length}, index of {search_element}: {index}, Time: {end_time - start_time:.6f} seconds")
+
+
 
 arr = [1, 2, None, None, 5, 6, 7, None, 10, 11]
 x = 3
 print(search_in_sparse_array(arr, x))
+# Тесты с разными длинами списков и элементами для поиска
+list_lengths_to_test = [10, 100, 1000, 10000, 100000, 1000000]
+search_elements_to_test = [5, 55, 200, 1, 1000, 100000, None]
+run_tests(list_lengths_to_test, search_elements_to_test)
+
+# Примеры тестов из прошлого ответа
+arr = generate_sparse_list(10) # теперь генерируем arr с помощью generate_sparse_list
+print(search_in_sparse_array(arr, 7))
+print(search_in_sparse_array(arr, 3))
+print(search_in_sparse_array(arr, 10))
