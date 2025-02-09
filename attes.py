@@ -18,7 +18,7 @@ class DeliveryItem(Sortable):
         self.delivery_time = delivery_time  # Добавляем время доставки
 
     def __repr__(self):
-        return f"ID: {self.item_id}, Name: {self.name}, Weight: {self.weight}, Destination: {self.destination}, Time: {self.delivery_time}"
+        return f"Номер: {self.item_id}, Name: {self.name}, Weight: {self.weight}, Destination: {self.destination}, Time: {self.delivery_time}"
 
     def get_sort_key(self, criterion: str):
         if criterion == 'name':
