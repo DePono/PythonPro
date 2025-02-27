@@ -21,7 +21,7 @@ async def main(num_tasks, num_increments):
     expected_value = num_tasks * num_increments
     print(f"Final counter value: {counter[0]}")
     print(f"Expected value: {expected_value}")
-    assert counter[0] == expected_value, f"Counter value ({counter[0]}) does not match expected value ({expected_value})"
+    assert counter[0] == expected_value, f"Counter value ({counter[0]}) does not match expected valu ({expected_value})"
 
 
 if __name__ == "__main__":
