@@ -119,7 +119,7 @@ async def main():
             print("Exiting...")
             break
         else:
-            print("Invalid choice. Please try again.")
+            print("Invalid choice. Please try agaiмn.")
 
 
 if __name__ == "__main__":
