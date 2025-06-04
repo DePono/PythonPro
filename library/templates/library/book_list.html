@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Библиотека</title>
+</head>
+<body>
+    <h1>Список книг</h1>
+    <a href="{% url 'book_create' %}">Добавить новую книгу</a>
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a> — {{ book.author }}
+            </li>
+        {% empty %}
+            <li>Книг пока нет.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

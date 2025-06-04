@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Удаление книги</title>
+</head>
+<body>
+    <h1>Удалить книгу: {{ book.title }}?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Подтвердить удаление</button>
+    </form>
+    <a href="{% url 'book_detail' book.pk %}">Отмена</a>
+</body>
+</html>
